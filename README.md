@@ -2,6 +2,11 @@
 ## Test backend
 ### 1. Run tests
 ###
+#### Install dependencies
+After clone the project, install the package dependencies.
+```bash
+$ npm install -D
+```
 #### Configure service
 This service uses MongoDB as a docker image. Check the config.js file to set up according the local ip or your host name.
 ```bash
