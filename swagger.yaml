@@ -1,0 +1,285 @@
+openapi: 3.0.0
+
+info:
+  description: "Backend Test"
+  version: "0.0.1"
+  title: "Corner Coffee Marketplace"
+  contact:
+    email: "carlos.tomas@protonmail.ch"
+
+servers:
+  - url: http://localhost:3000
+    description: Server at localhost
+
+paths:
+  /users:
+    post:
+      tags:
+        - users
+      summary: Add a new user
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: An user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+    put:
+      tags:
+        - users
+      summary: Update an user
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: An user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+
+  /users/{id}:
+    get:
+      tags:
+        - users
+      summary: Get an user
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: User returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+    delete:
+      tags:
+        - users
+      summary: Delete an user
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Deleted
+        '401':
+          description: Unauthorized
+
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: Login an user
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: An user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Loged
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '400':
+          description: Invalid grant
+
+  /coffees:
+    post:
+      tags:
+        - coffees
+      summary: Create a coffee
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: A coffee
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Coffee'
+      responses:
+        '201':
+          description: Create
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Coffee'
+        '401':
+          description: Unauthorized
+
+  /coffees/{id}:
+    get:
+      tags:
+        - coffees
+      summary: Get a coffee
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Coffee returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Coffee'
+        '401':
+          description: Unauthorized
+
+  /orders:
+    post:
+      tags:
+        - orders
+      summary: Create an oder
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: A coffee
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized
+
+components:
+  schemas:
+    User:
+      type: "object"
+      required:
+      - "username"
+      - "role"
+      - "password"
+      properties:
+        id:
+          type: "string"
+        username:
+          type: "string"
+        role:
+          type: "string"
+        password:
+          type: "string"
+    Coffee:
+      type: "object"
+      required:
+      - "name"
+      - "intensity"
+      - "price"
+      - "stock"
+      properties:
+        id:
+          type: "string"
+        name:
+          type: "string"
+        intensity:
+          type: "string"
+        price:
+          type: "string"
+        stock:
+          type: "string"
+    Order:
+      type: "object"
+      required:
+      - "user_id"
+      - "coffee_id"
+      - "amount"
+      - "quantity"
+      properties:
+        id:
+          type: "string"
+        user_id:
+          type: "string"
+        coffee_id:
+          type: "string"
+        amount:
+          type: "number"
+        stock:
+          type: "integer"
+
+tags:
+  - name: users
+    description: Users operations
+  - name: coffees
+    description: Coffees operations
+  - name: orders
+    description: Orders operations

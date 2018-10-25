@@ -1,0 +1,25 @@
+{
+  "name": "CornerCoffeeMarketplace",
+  "version": "1.0.0",
+  "description": "A place to order coffee",
+  "main": "bootstrap.js",
+  "scripts": {
+    "test": "jasmine",
+    "start": "node bootstrap.js",
+    "lint": "eslint ."
+  },
+  "author": "Carlos Tomas",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "mongoose": "^5.3.5",
+    "oauth2-server": "^3.0.1",
+    "request": "^2.88.0",
+    "restify": "^7.2.1",
+    "restify-router": "^0.5.1"
+  },
+  "devDependencies": {
+    "jasmine": "^3.2.0",
+    "proxyquire": "^2.1.0"
+  }
+}
