@@ -1,12 +1,17 @@
 {
-  "name": "CornerCoffeeMarketplace",
+  "name": "coffeemachine",
   "version": "1.0.0",
   "description": "A place to order coffee",
+  "homepage": "https://github.com/carlostomas/coffeemachine",
   "main": "bootstrap.js",
   "scripts": {
     "test": "jasmine",
     "start": "node bootstrap.js",
     "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlostomas/coffeemachine.git"
   },
   "author": "Carlos Tomas",
   "license": "ISC",
