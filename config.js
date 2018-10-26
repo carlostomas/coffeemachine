@@ -14,5 +14,3 @@ module.exports = {
         client_secret: 'clientSecret'
     }
 };
-
-

@@ -82,6 +82,25 @@ $ docker run -dit -p 3000:3000 --name coffee cornerjob/coffee
 $ curl http://localhost:3000/test
 ```
 
-### 4. Use it
+### 4. Create default user
+A default user must be created to be able to log in.
+Exec a shell in to the coffee docker image.
+```bash
+$ docker exec -it coffee /bin/bash
+```
+
+and exec the script
+```bash
+/usr/src/app# npm run defaultUser
+```
+Now you are able to login with user admin with password admin
+
+### 5. Use it
 You can found a swagger.yaml file with the endpoint declaration.
 
+### 6. Logs
+You can check the service logs with the docker image logs.
+
+```bash
+$ docker logs coffee
+```
