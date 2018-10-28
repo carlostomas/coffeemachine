@@ -30,6 +30,9 @@ module.exports = {
     getUser: (username, password) => {
         return Users.find({username: username})
             .then(result => {
+                if (result.length == 0) {
+                    return;
+                }
                 if(password === result[0]._doc.password) {
                     return {
                         _id: result[0]._doc._id,

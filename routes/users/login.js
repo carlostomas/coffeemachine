@@ -14,7 +14,6 @@ function login (req, res, next) {
         res.send(200,result);
         next();
     }).catch(err => {
-        console.log(err)
         if (err && err.name === 'invalid_grant') {
             res.send(400, err.message);
             next();
