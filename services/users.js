@@ -1,6 +1,5 @@
 'use strict';
 
-const config = require('../config');
 const User = require('../models/users');
 const crypto = require('crypto');
 const oauth = require('../lib/oauth');
