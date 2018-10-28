@@ -16,14 +16,14 @@ const USER = {
 };
 
 const usersModelMock = jasmine.createSpyObj('Coffee model', ['create','read','update','del']);
-usersModelMock.create = jasmine.createSpy('create').and.callFake((coffee) => Promise.resolve(true));
-usersModelMock.findById = jasmine.createSpy('findById').and.callFake((id) => Promise.resolve(true));
-usersModelMock.findOneAndUpdate = jasmine.createSpy('findOneAndUpdate').and.callFake((name) => Promise.resolve(true));
-usersModelMock.deleteOne= jasmine.createSpy('deleteOne').and.callFake((user) => Promise.resolve(true));
+usersModelMock.create = jasmine.createSpy('create').and.callFake(coffee => Promise.resolve(true));
+usersModelMock.findById = jasmine.createSpy('findById').and.callFake(id => Promise.resolve(true));
+usersModelMock.findOneAndUpdate = jasmine.createSpy('findOneAndUpdate').and.callFake(name => Promise.resolve(true));
+usersModelMock.deleteOne = jasmine.createSpy('deleteOne').and.callFake(user => Promise.resolve(true));
 
 const oauthLibMock = jasmine.createSpyObj('Oauth lib', ['gen','authenticate']);
 oauthLibMock.gen = jasmine.createSpy('gen').and.callFake((user, pass) => Promise.resolve(true));
-oauthLibMock.authenticate = jasmine.createSpy('authenticate').and.callFake((token) => Promise.resolve(true));
+oauthLibMock.authenticate = jasmine.createSpy('authenticate').and.callFake(token => Promise.resolve(true));
 
 const sut = proxyquire('../../services/users', {
     '../models/users': usersModelMock,
@@ -39,7 +39,7 @@ describe('Users service', () => {
             done();
         });
     });
-    
+
     it('read', done => {
         sut.read(1).then(res => {
             expect(res).not.toBe(null);
@@ -47,7 +47,7 @@ describe('Users service', () => {
             done();
         });
     });
-    
+
     it('update', done => {
         sut.update(1).then(res => {
             expect(res).not.toBe(null);
@@ -55,7 +55,7 @@ describe('Users service', () => {
             done();
         });
     });
-    
+
     it('del', done => {
         sut.del(1).then(res => {
             expect(res).not.toBe(null);
@@ -63,7 +63,7 @@ describe('Users service', () => {
             done();
         });
     });
-    
+
     it('login', done => {
         sut.login(USER).then(res => {
             expect(res).not.toBe(null);
@@ -71,7 +71,7 @@ describe('Users service', () => {
             done();
         });
     });
-    
+
     it('check', done => {
         sut.check(1).then(res => {
             expect(res).not.toBe(null);

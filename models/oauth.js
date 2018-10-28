@@ -6,16 +6,14 @@ const Tokens = require('./tokens'),
 const config = require('../config');
 
 module.exports = {
-    getAccessToken: (bearerToken) => {
-        return Tokens.find({accessToken: bearerToken})
+    getAccessToken: bearerToken => Tokens.find({accessToken: bearerToken})
             .then(res => {
                 if (!res[0]) {
                     return;
                 }
                 return res[0];
-            });
-    },
-    
+            }),
+
     getClient: (clientId, clientSecret) => {
         if (config.oauth.client_id === clientId && config.oauth.client_secret === clientSecret) {
             return Promise.resolve({
@@ -24,16 +22,15 @@ module.exports = {
                 grants: ['password']
             })
         }
-        reject();
+        Promise.reject();
     },
-    
-    getUser: (username, password) => {
-        return Users.find({username: username})
+
+    getUser: (username, password) => Users.find({username: username})
             .then(result => {
-                if (result.length == 0) {
+                if (result.length === 0) {
                     return;
                 }
-                if(password === result[0]._doc.password) {
+                if (password === result[0]._doc.password) {
                     return {
                         _id: result[0]._doc._id,
                         username: result[0]._doc.username,
@@ -41,11 +38,8 @@ module.exports = {
                     };
                 }
             })
-            .catch(err => {
-                return err;
-            })
-    },
-    
+            .catch(err => err),
+
     saveToken: (token, client, user) => {
         const data = {
             accessToken: token.accessToken,

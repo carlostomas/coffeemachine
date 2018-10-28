@@ -12,10 +12,10 @@ if (debug) {
 
 const coffeeModelMock = jasmine.createSpyObj('Coffee model', ['create','read','update','del']);
 
-coffeeModelMock.create = jasmine.createSpy('create').and.callFake((coffee) => Promise.resolve(true));
-coffeeModelMock.findById = jasmine.createSpy('findById').and.callFake((id) => Promise.resolve(true));
-coffeeModelMock.findOneAndUpdate = jasmine.createSpy('findOneAndUpdate').and.callFake((name) => Promise.resolve(true));
-coffeeModelMock.deleteOne= jasmine.createSpy('deleteOne').and.callFake((user) => Promise.resolve(true));
+coffeeModelMock.create = jasmine.createSpy('create').and.callFake(coffee => Promise.resolve(true));
+coffeeModelMock.findById = jasmine.createSpy('findById').and.callFake(id => Promise.resolve(true));
+coffeeModelMock.findOneAndUpdate = jasmine.createSpy('findOneAndUpdate').and.callFake(name => Promise.resolve(true));
+coffeeModelMock.deleteOne = jasmine.createSpy('deleteOne').and.callFake(user => Promise.resolve(true));
 
 const sut = proxyquire('../../services/coffees', {
     '../models/coffees': coffeeModelMock
@@ -29,7 +29,7 @@ describe('Coffee service', () => {
             done();
         });
     });
-    
+
     it('read', done => {
         sut.read(1).then(res => {
             expect(res).not.toBe(null);
@@ -37,7 +37,7 @@ describe('Coffee service', () => {
             done();
         });
     });
-    
+
     it('update', done => {
         sut.update(1).then(res => {
             expect(res).not.toBe(null);
@@ -45,7 +45,7 @@ describe('Coffee service', () => {
             done();
         });
     });
-    
+
     it('del', done => {
         sut.del(1).then(res => {
             expect(res).not.toBe(null);

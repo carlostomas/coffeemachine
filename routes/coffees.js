@@ -13,6 +13,11 @@ function byId (req, res, next) {
     }
     coffeesService.read(req.params.id)
         .then(result => {
+            if (!result) {
+                res.send(404, 'Not coffee found!');
+                next();
+                return;
+            }
             res.send(200, result);
             next();
         })

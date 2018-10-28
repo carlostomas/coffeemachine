@@ -41,14 +41,14 @@ describe('Orders controller', () => {
                 },
                 user: 1
             };
-            
+
             sut.create(coffeeReq).then(res => {
                 expect(ordersServiceMock.create).toHaveBeenCalledTimes(1);
                 expect(coffeesServiceMock.update).toHaveBeenCalledTimes(1);
                 done();
             })
         });
-        
+
         it('Stock is not enough', done => {
             coffeeReq = {
                 body: {
@@ -57,7 +57,7 @@ describe('Orders controller', () => {
                 },
                 user: 1
             };
-            
+
             sut.create(coffeeReq).then(res => {
                 ordersServiceMock.create.calls.reset();
                 coffeesServiceMock.update.calls.reset();

@@ -1,6 +1,6 @@
 'use strict';
 
-const config  = require('./config'),
+const config = require('./config'),
     restify = require('restify'),
     auth = require('./controllers/auth'),
     usersRoute = require('./routes/users'),
@@ -10,8 +10,8 @@ const config  = require('./config'),
     loginRoute = require('./routes/users/login');
 
 const server = restify.createServer({
-    name    : config.name,
-    version : config.version
+    name: config.name,
+    version: config.version
 });
 
 server.use(restify.plugins.jsonBodyParser({ mapParams: true }));

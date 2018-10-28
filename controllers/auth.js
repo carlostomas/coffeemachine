@@ -13,6 +13,6 @@ module.exports = {
             next();
         }
     },
-    
-    login: (user) => usersService.login(user)
+
+    login: user => usersService.login(user)
 };
