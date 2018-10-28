@@ -22,7 +22,7 @@ module.exports = {
         return User.findById(id)
         .then(result => {
             if(!result) {
-                return {};
+                return;
             }
         
             return {

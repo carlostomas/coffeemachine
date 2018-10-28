@@ -22,6 +22,9 @@ module.exports = {
     read: id => {
         return Coffee.findById(id)
         .then(result => {
+            if (!result) {
+                return;
+            }
             return {
                 id: result._id,
                 name: result.name,
