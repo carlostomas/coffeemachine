@@ -12,11 +12,13 @@ function createUser () {
     return usersService.create(userDefault)
         .then(res => {
             console.log('Default user created' + res);
-            return Promise.resolve(res);
+            process.exit();
+            return;
         })
         .catch(err => {
             console.log('ERROR ' + err);
-            return Promise.reject(err);
+            process.exit()
+            return;
         });
     }
 createUser();
