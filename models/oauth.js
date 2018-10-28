@@ -27,7 +27,7 @@ module.exports = {
 
     getUser: (username, password) => Users.find({username: username})
             .then(result => {
-                if (result.length == 0) {
+                if (result.length === 0) {
                     return;
                 }
                 if (password === result[0]._doc.password) {

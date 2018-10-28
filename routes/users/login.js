@@ -5,7 +5,7 @@ const router = new Router();
 const auth = require('../../controllers/auth');
 
 function login (req, res, next) {
-    if(!req.body.username || !req.body.password) {
+    if (!req.body.username || !req.body.password) {
         res.send(400,'Username and password required');
         next();
         return;
