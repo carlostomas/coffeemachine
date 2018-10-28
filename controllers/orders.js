@@ -5,7 +5,6 @@ module.exports = {
     create: (req) => {
         return coffeesService.read(req.body.coffee_id)
             .then(coffee => {
-                console.log(req.body.quantity)
                 if(coffee === {} || coffee.stock === 0){
                     console.log('ERROR SET ORDER -> out of stock');
                     return;

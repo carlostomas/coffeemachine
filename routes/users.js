@@ -14,11 +14,11 @@ function byId(req, res, next) {
     }
     usersService.read(req.params.id)
         .then(result => {
-            if (!result || resul === {}) {
+            if (!result || result === {}) {
                 res.send(404, 'Not found');
                 next();
                 return;
-            } 
+            }
             res.send(200, result);
             next();
         })
