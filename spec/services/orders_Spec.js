@@ -12,8 +12,8 @@ if (debug) {
 
 const orderModelMock = jasmine.createSpyObj('Coffee model', ['create','del']);
 
-orderModelMock.create = jasmine.createSpy('create').and.callFake((coffee) => Promise.resolve(true));
-orderModelMock.deleteOne= jasmine.createSpy('deleteOne').and.callFake((user) => Promise.resolve(true));
+orderModelMock.create = jasmine.createSpy('create').and.callFake(coffee => Promise.resolve(true));
+orderModelMock.deleteOne = jasmine.createSpy('deleteOne').and.callFake(user => Promise.resolve(true));
 
 const sut = proxyquire('../../services/orders', {
     '../models/orders': orderModelMock
@@ -27,7 +27,7 @@ describe('Order service', () => {
             done();
         });
     });
-    
+
     it('del', done => {
         sut.del(1).then(res => {
             expect(res).not.toBe(null);

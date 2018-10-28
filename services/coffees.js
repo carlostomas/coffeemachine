@@ -3,24 +3,21 @@
 const Coffee = require('../models/coffees');
 
 module.exports = {
-    create: coffee => {
-        return Coffee.create(coffee)
+    create: coffee => Coffee.create(coffee)
         .then(result => {
             const data = {
                 id: result._id,
                 name: result.name,
                 intensity: result.intensity,
                 price: result.price,
-                stock: result.stock,
+                stock: result.stock
             };
             console.log('SET COFFEE -> ' + JSON.stringify(data));
             return data;
         })
-        .catch(err => err)
-    },
-    
-    read: id => {
-        return Coffee.findById(id)
+        .catch(err => err),
+
+    read: id => Coffee.findById(id)
         .then(result => {
             if (!result) {
                 return;
@@ -30,27 +27,22 @@ module.exports = {
                 name: result.name,
                 intensity: result.intensity,
                 price: result.price,
-                stock: result.stock,
-            
+                stock: result.stock
+
             }
-        });
-    },
-    
-    update: coffee => {
-        return Coffee.findOneAndUpdate({'name': coffee.name},coffee)
+        }),
+
+    update: coffee => Coffee.findOneAndUpdate({'name': coffee.name},coffee)
             .then(result => {
                 const data = {
                     id: result._id,
                     name: result.name,
                     intensity: result.intensity,
                     price: result.price,
-                    stock: result.stock,
+                    stock: result.stock
                 };
                 return data;
-        })
-    },
-    
-    del: id => {
-        return Coffee.deleteOne({'_id': id});
-    }
+        }),
+
+    del: id => Coffee.deleteOne({'_id': id})
 };

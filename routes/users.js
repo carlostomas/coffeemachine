@@ -6,8 +6,8 @@ const router = new Router();
 const usersService = require('../services/users');
 const adminRole = require('../config').adminrole;
 
-function byId(req, res, next) {
-    if(!req.user) {
+function byId (req, res, next) {
+    if (!req.user) {
         res.send(401,'Unauthorized');
         next();
         return;
@@ -28,25 +28,25 @@ function byId(req, res, next) {
         });
 }
 
-function post(req, res, next) {
-    if(!req.user) {
+function post (req, res, next) {
+    if (!req.user) {
         res.send(401,'Unauthorized');
         next();
         return;
     }
-    
-    if(req.user.role!==adminRole) {
+
+    if (req.user.role !== adminRole) {
         res.send(401, 'Must be admin role!');
         next();
         return;
     }
-    
-    if(!req.body.username || !req.body.password || !req.body.role) {
+
+    if (!req.body.username || !req.body.password || !req.body.role) {
         res.send(401, 'Missing user data!');
         next();
         return;
     }
-    
+
     usersService.create(req.body)
         .then(result => {
             res.send(201, result);
@@ -59,18 +59,18 @@ function post(req, res, next) {
 }
 
 function del (req, res, next) {
-    if(!req.user) {
+    if (!req.user) {
         res.send(401,'Unauthorized');
         next();
         return;
     }
-    
-    if(req.user.role!==adminRole) {
+
+    if (req.user.role !== adminRole) {
         res.send(401, 'Must be admin role!');
         next();
         return;
     }
-    
+
     usersService.del(req.params.id)
     .then(result => {
         res.send(200, result);
@@ -83,18 +83,18 @@ function del (req, res, next) {
 }
 
 function update (req, res, next) {
-    if(!req.user) {
+    if (!req.user) {
         res.send(401,'Unauthorized');
         next();
         return;
     }
-    
-    if(req.user.role!==adminRole) {
+
+    if (req.user.role !== adminRole) {
         res.send(401, 'Must be admin role!');
         next();
         return;
     }
-    
+
     usersService.update(req.body)
     .then(result => {
         res.send(200, result);

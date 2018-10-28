@@ -157,7 +157,7 @@ describe('Coffee Machine Test', () => {
                 done();
             })
         });
-    
+
         it('dont able to create a new order with quantity bigger than stock', done => {
             request.post({
                 url: 'http://localhost:3000/orders',
