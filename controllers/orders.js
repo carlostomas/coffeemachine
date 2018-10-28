@@ -10,7 +10,7 @@ module.exports = {
                     return;
                 }
                 
-                if((coffee.stock - req.body.quantity) <= 0) {
+                if((coffee.stock - req.body.quantity) < 0) {
                     console.log('ERROR SET ORDER -> out of stock');
                     return;
                 }

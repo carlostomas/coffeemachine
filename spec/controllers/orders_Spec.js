@@ -53,7 +53,7 @@ describe('Orders controller', () => {
             coffeeReq = {
                 body: {
                     coffee_id: 1,
-                    quantity: 10
+                    quantity: 11
                 },
                 user: 1
             };
